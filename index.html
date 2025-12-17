@@ -1,0 +1,1436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capstone Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Profile Section */
+        .profile-section {
+            text-align: center;                                      /* Centered */
+            padding: 50px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  /* Modern gradient */
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .profile-image-wrapper {
+            margin-bottom: 25px;
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;        /* Makes it circular */
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 5px solid white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4em;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-name {
+            font-size: 2.8em;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .profile-title {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .capstone-overview {
+            max-width: 700px;
+            margin: 25px auto 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .capstone-overview h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .overview-text {
+            line-height: 1.8;
+            font-size: 1.05em;
+            opacity: 0.95;
+        }
+
+        /* Upload Container */
+        .upload-container {
+            margin-top: 18px;
+        }
+
+        .upload-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        .upload-label:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .upload-icon {
+            font-size: 1.2em;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.4em;
+            transition: all 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .social-links a:hover {
+            background-color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Profile Edit Button */
+        .edit-profile-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .edit-profile-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info p {
+            margin: 8px 0;
+            font-size: 1em;
+        }
+
+        /* Edit Mode Styles */
+        .edit-input {
+            width: 100%;
+            padding: 12px 16px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2d3748;
+            font-family: inherit;
+        }
+
+        .edit-textarea {
+            width: 100%;
+            padding: 12px 16px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            font-size: 1em;
+            color: #2d3748;
+            font-family: inherit;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .edit-contact {
+            margin-top: 20px;
+        }
+
+        .edit-field {
+            margin: 15px 0;
+        }
+
+        .edit-field label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .edit-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        .save-btn, .cancel-btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .save-btn {
+            background: #10b981;
+            color: white;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+
+        .save-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .cancel-btn {
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .cancel-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            margin-bottom: 40px;
+        }
+
+        .projects-header {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .projects-header h1 {
+            font-size: 2.3em;
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .projects-header p {
+            color: #718096;
+            font-size: 1.1em;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 35px;
+        }
+
+        .section {
+            padding: 35px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            background-color: #ffffff;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .section:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .section h2 {
+            color: #2d3748;
+            margin-bottom: 18px;
+            font-size: 1.6em;
+            font-weight: 600;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 12px;
+        }
+
+        .section-description {
+            color: #718096;
+            font-size: 0.95em;
+            margin-bottom: 18px;
+            line-height: 1.6;
+        }
+
+        .file-input {
+            display: block;
+            padding: 14px;
+            width: 100%;
+            border: 2px dashed #cbd5e0;     /* Professional dashed border */
+            border-radius: 8px;
+            cursor: pointer;
+            background-color: #f7fafc;      /* Subtle background */
+            transition: border-color 0.3s, background-color 0.3s;
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        .file-input:hover {
+            border-color: #667eea;          /* Hover effect */
+            background-color: #edf2f7;
+        }
+
+        video, iframe, embed {
+            width: 100%;
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 18px;
+        }
+
+        video {
+            height: auto;
+            background-color: #000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        iframe, embed {
+            height: 600px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .url-input-group {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 14px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        button {
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            font-family: inherit;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .link-container {
+            margin-top: 18px;
+            padding: 18px;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            min-height: 60px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .link-container a {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 16px;
+            word-break: break-all;
+            font-weight: 500;
+        }
+
+        .link-container a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+
+        .empty-state {
+            color: #a0aec0;
+            font-style: italic;
+        }
+
+        /* Document Preview Box */
+        .doc-preview-box {
+            margin-top: 18px;
+            padding: 25px;
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .doc-preview-box .file-icon {
+            font-size: 3.5em;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .doc-preview-box .file-name {
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+            text-align: center;
+            word-break: break-word;
+            font-size: 1.1em;
+        }
+
+        .doc-preview-box .file-info {
+            text-align: center;
+            color: #718096;
+            font-size: 0.95em;
+            margin-bottom: 18px;
+        }
+
+        .doc-preview-box .action-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .doc-preview-box button {
+            padding: 12px 24px;
+            font-size: 14px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, #e0e7ff 0%, #ede9fe 100%);
+            border-left: 4px solid #667eea;
+            padding: 28px;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .info-box h3 {
+            color: #4c51bf;
+            margin-bottom: 18px;
+            font-size: 1.3em;
+        }
+
+        .info-box p {
+            color: #4a5568;
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .info-box ol {
+            margin-left: 22px;
+            color: #4a5568;
+            line-height: 1.9;
+        }
+
+        .info-box code {
+            background-color: rgba(102, 126, 234, 0.1);
+            padding: 3px 7px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #5a67d8;
+        }
+
+        /* Media Gallery */
+        .media-gallery {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .media-item {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 15px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .media-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .media-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .media-item-title {
+            font-weight: 600;
+            color: #2d3748;
+            word-break: break-word;
+            flex: 1;
+            margin-right: 10px;
+        }
+
+        .remove-btn {
+            padding: 6px 12px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .remove-btn:hover {
+            background: #dc2626;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .video-preview {
+            width: 100%;
+            border-radius: 8px;
+            background-color: #000;
+        }
+
+        /* Document Preview Card */
+        .doc-preview-card {
+            margin-top: 0;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e8edf7 100%);
+            border: none;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .doc-preview-card .file-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .doc-preview-card .file-name {
+            font-size: 1.2em;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 10px;
+            word-break: break-word;
+        }
+
+        .doc-preview-card .file-info {
+            color: #718096;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+        }
+
+        /* Download Button */
+        .download-btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            padding: 35px 0;
+            text-align: center;
+            border-top: 2px solid #e2e8f0;
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-radius: 12px;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-contact {
+            margin-bottom: 12px;
+            color: #4a5568;
+            font-size: 1em;
+        }
+
+        .footer-contact a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-contact a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-updated {
+            color: #718096;
+            font-size: 0.9em;
+        }
+
+        /* Mobile Responsive - 9:16 Aspect Ratio Optimized */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                padding: 20px 15px;
+                max-width: 100%;
+            }
+
+            .media-item-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .remove-btn {
+                width: 100%;
+            }
+
+            .profile-section {
+                padding: 30px 20px;
+            }
+
+            .profile-name {
+                font-size: 2em;
+            }
+
+            .profile-title {
+                font-size: 1.1em;
+            }
+
+            .profile-image, .profile-placeholder {
+                width: 100px;
+                height: 100px;
+                font-size: 2.5em;
+            }
+
+            .capstone-overview {
+                padding: 20px;
+            }
+
+            .capstone-overview h3 {
+                font-size: 1.1em;
+            }
+
+            .overview-text {
+                font-size: 0.95em;
+            }
+
+            .edit-profile-btn {
+                position: static;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+            .edit-actions {
+                flex-direction: column;
+            }
+
+            .save-btn, .cancel-btn {
+                width: 100%;
+            }
+
+            .projects-header h1 {
+                font-size: 1.8em;
+            }
+
+            .section {
+                padding: 20px 15px;
+            }
+
+            .section h2 {
+                font-size: 1.3em;
+            }
+
+            .url-input-group {
+                flex-direction: column;
+            }
+
+            button, .upload-label {
+                width: 100%;
+                padding: 14px;
+                justify-content: center;
+            }
+
+            iframe, video {
+                height: 350px;
+            }
+        }
+
+        /* Extra Small Devices - 9:16 Vertical View */
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+            }
+
+            .profile-name {
+                font-size: 1.7em;
+            }
+
+            .projects-header h1 {
+                font-size: 1.5em;
+            }
+
+            .section h2 {
+                font-size: 1.2em;
+            }
+
+            iframe, video {
+                height: 280px;
+            }
+
+            .footer {
+                padding: 25px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Profile Section -->
+        <header class="profile-section">
+            <!-- Edit Profile Button -->
+            <button class="edit-profile-btn" onclick="toggleEditMode()">✏️ Edit Profile</button>
+            
+            <!-- Profile Picture Upload (hidden by default) -->
+            <div id="profilePictureUpload" class="upload-container" style="display: none; margin-bottom: 20px;">
+                <label for="profilePicInput" class="upload-label">
+                    <span class="upload-icon">📷</span>
+                    <span>Change Profile Picture</span>
+                </label>
+                <input type="file" id="profilePicInput" class="file-input" accept="image/*" style="display: none;">
+            </div>
+            
+            <div class="profile-image-wrapper">
+                <img id="profileImage" src="./assets/profile.jpg" alt="Your Name" class="profile-image">
+                <!-- If no image, use: <div class="profile-placeholder">👤</div> -->
+            </div>
+            
+            <h1 id="profileName" class="profile-name">TREVOR KIMATHI WAICHONGO</h1>
+            <p id="profileTitle" class="profile-title">Capstone Project</p>
+            <p id="profileBio" class="profile-bio">
+                This portfolio showcases my capstone project, representing the culmination of my academic journey. 
+                The project demonstrates expertise in Bsc. Information Technology, combining theoretical knowledge with practical 
+                implementation to solve real-world challenges.
+            </p>
+            
+            <div class="social-links" id="socialLinks">
+                <a id="githubLink" href="https://github.com/2COR515" target="_blank" rel="noopener noreferrer" title="GitHub">🐙</a>
+                <a id="linkedinLink" href="https://www.linkedin.com/in/waichongo/" target="_blank" rel="noopener noreferrer" title="LinkedIn">💼</a>
+                <a id="emailLink" href="mailto:waichongo.trevor19@students.dkut.ac.ke" target="_blank" rel="noopener noreferrer" title="Email">📧</a>
+            </div>
+            
+            <!-- Edit Actions (hidden by default) -->
+            <div id="editActions" class="edit-actions" style="display: none; margin-top: 20px; gap: 10px;">
+                <button class="save-btn" onclick="saveProfile()">💾 Save Changes</button>
+                <button class="cancel-btn" onclick="cancelEdit()">❌ Cancel</button>
+            </div>
+        </header>
+
+        <!-- Projects Section -->
+        <main class="projects-section">
+            <div class="projects-header">
+                <h1>📚 Capstone Projects</h1>
+                <p>Explore my project materials, presentations, and resources</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Video Section -->
+                <section class="section">
+                    <h2>📹 Video Presentation</h2>
+                    <p class="section-description">Upload multiple videos to preview them here.</p>
+                    
+                    <!-- Upload Input -->
+                    <div class="upload-container">
+                        <label for="videoUpload" class="upload-label">
+                            <span class="upload-icon">📤</span>
+                            <span>Choose Video Files</span>
+                        </label>
+                        <input type="file" id="videoUpload" class="file-input" accept="video/*" multiple style="display: none;">
+                    </div>
+                    
+                    <!-- Video Gallery -->
+                    <div id="videoGallery" class="media-gallery" style="display: none;"></div>
+                    
+                    <!-- For Supervisor: Replace above with static path -->
+                    <!-- <video controls style="width: 100%; border-radius: 8px; margin-top: 18px;">
+                        <source src="./assets/video.mp4" type="video/mp4">
+                    </video> -->
+                </section>
+
+                <!-- Documentation Section -->
+                <section class="section">
+                    <h2>📄 Project Documentation</h2>
+                    <p class="section-description">Upload multiple PDF, Word (.docx), or PowerPoint (.pptx) documents.</p>
+                    
+                    <!-- Upload Input -->
+                    <div class="upload-container">
+                        <label for="pdfUpload" class="upload-label">
+                            <span class="upload-icon">📤</span>
+                            <span>Choose Documents</span>
+                        </label>
+                        <input type="file" id="pdfUpload" class="file-input" accept=".pdf,.docx,.doc,.pptx,.ppt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" multiple style="display: none;">
+                    </div>
+                    
+                    <!-- Documents Gallery -->
+                    <div id="documentsGallery" class="media-gallery" style="display: none;"></div>
+                    
+                    <!-- For Supervisor: Replace above with static path -->
+                    <!-- <iframe src="./assets/report.pdf" style="width: 100%; height: 600px; border-radius: 8px; margin-top: 18px;"></iframe>
+                    <a href="./assets/report.pdf" download class="download-btn">📥 Download Full PDF</a> -->
+                </section>
+
+                <!-- Project Links Section -->
+                <section class="section">
+                    <h2>🔗 Project Links</h2>
+                    <p class="section-description">Explore related resources, code repositories, and project materials.</p>
+                    <div class="url-input-group">
+                        <input type="text" id="urlInput" placeholder="Enter URL (e.g., https://github.com/username/project)">
+                        <button id="createLinkBtn">Add Resource</button>
+                    </div>
+                    <div class="link-container" id="linkContainer">
+                        <span class="empty-state">No resources added yet</span>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Setup Instructions -->
+        <div class="info-box">
+            <h3>📌 Setup Instructions</h3>
+            <p><strong>Required Files:</strong> This portfolio expects the following files in the <code>assets/</code> folder:</p>
+            <ol>
+                <li><code>assets/profile.jpg</code> - Your profile photo</li>
+                <li><code>assets/video.mp4</code> - Project video presentation</li>
+                <li><code>assets/report.pdf</code> - Project documentation/report</li>
+            </ol>
+            <p><strong>Note:</strong> All files use relative paths (<code>./assets/...</code>) for GitHub Pages compatibility.</p>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="footer-content">
+                <p class="footer-contact">
+                    <strong>Contact:</strong> <a href="mailto:
+                    " target="_blank" rel="noopener noreferrer">waichongo.trevor19@students.dkut.ac.ke</a>
+                </p>
+                <p class="footer-updated">
+                    <strong>Last Updated:</strong> <span id="lastUpdated">December 17, 2025</span>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Profile Management
+        let profileData = {
+            name: 'Your Full Name',
+            bio: 'This portfolio showcases my capstone project, representing the culmination of my academic journey. Click "Edit Profile" to add your information.',
+            email: 'your.email@university.edu',
+            phone: '+1 (555) 123-4567',
+            profilePic: null
+        };
+
+        // Load profile data from localStorage on page load
+        function loadProfile() {
+            const saved = localStorage.getItem('portfolioProfile');
+            if (saved) {
+                profileData = JSON.parse(saved);
+                updateProfileDisplay();
+            }
+        }
+
+        // Update profile display with current data
+        function updateProfileDisplay() {
+            document.getElementById('displayName').textContent = profileData.name;
+            document.getElementById('displayBio').textContent = profileData.bio;
+            document.getElementById('displayEmail').textContent = profileData.email;
+            document.getElementById('displayPhone').textContent = profileData.phone;
+            document.getElementById('emailLink').href = `mailto:${profileData.email}`;
+            
+            // Update profile picture
+            if (profileData.profilePic) {
+                document.getElementById('profileImage').src = profileData.profilePic;
+                document.getElementById('profileImage').style.display = 'inline-block';
+                document.getElementById('profilePlaceholder').style.display = 'none';
+            }
+        }
+
+        // Toggle edit mode
+        function toggleEditMode() {
+            document.getElementById('profileDisplay').style.display = 'none';
+            document.getElementById('profileEdit').style.display = 'block';
+            document.getElementById('profilePicUpload').style.display = 'block';
+            
+            // Populate edit fields with current data
+            document.getElementById('editName').value = profileData.name;
+            document.getElementById('editBio').value = profileData.bio;
+            document.getElementById('editEmail').value = profileData.email;
+            document.getElementById('editPhone').value = profileData.phone;
+        }
+
+        // Save profile changes
+        function saveProfile() {
+            profileData.name = document.getElementById('editName').value || 'Your Full Name';
+            profileData.bio = document.getElementById('editBio').value || 'Add your capstone overview here.';
+            profileData.email = document.getElementById('editEmail').value || 'your.email@university.edu';
+            profileData.phone = document.getElementById('editPhone').value || '+1 (555) 123-4567';
+            
+            // Save to localStorage
+            localStorage.setItem('portfolioProfile', JSON.stringify(profileData));
+            
+            // Update display and exit edit mode
+            updateProfileDisplay();
+            cancelEdit();
+            
+            alert('✅ Profile saved successfully!');
+        }
+
+        // Cancel edit mode
+        function cancelEdit() {
+            document.getElementById('profileDisplay').style.display = 'block';
+            document.getElementById('profileEdit').style.display = 'none';
+            document.getElementById('profilePicUpload').style.display = 'none';
+        }
+
+        // Handle profile picture upload
+        document.getElementById('profilePicInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    profileData.profilePic = event.target.result;
+                    document.getElementById('profileImage').src = event.target.result;
+                    document.getElementById('profileImage').style.display = 'inline-block';
+                    document.getElementById('profilePlaceholder').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                alert('Please select a valid image file.');
+            }
+        });
+
+        // Load profile on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProfile();
+        });
+
+        // Storage for uploaded files
+        let uploadedVideos = [];
+        let uploadedDocuments = [];
+
+        // Video Upload and Gallery with URL.createObjectURL
+        const videoUpload = document.getElementById('videoUpload');
+        const videoGallery = document.getElementById('videoGallery');
+
+        videoUpload.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            
+            files.forEach(file => {
+                if (file.type.startsWith('video/')) {
+                    const videoURL = URL.createObjectURL(file);
+                    const videoId = Date.now() + Math.random();
+                    
+                    uploadedVideos.push({
+                        id: videoId,
+                        name: file.name,
+                        url: videoURL,
+                        file: file
+                    });
+                } else {
+                    alert(`${file.name} is not a valid video file.`);
+                }
+            });
+            
+            renderVideoGallery();
+            videoUpload.value = ''; // Reset input
+        });
+
+        function renderVideoGallery() {
+            if (uploadedVideos.length === 0) {
+                videoGallery.style.display = 'none';
+                return;
+            }
+            
+            videoGallery.style.display = 'grid';
+            videoGallery.innerHTML = uploadedVideos.map(video => `
+                <div class="media-item" data-id="${video.id}">
+                    <div class="media-item-header">
+                        <div class="media-item-title">🎥 ${video.name}</div>
+                        <button class="remove-btn" onclick="removeVideo(${video.id})">✕ Remove</button>
+                    </div>
+                    <video class="video-preview" controls>
+                        <source src="${video.url}" type="${video.file.type}">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            `).join('');
+        }
+
+        function removeVideo(id) {
+            const video = uploadedVideos.find(v => v.id === id);
+            if (video) {
+                URL.revokeObjectURL(video.url);
+                uploadedVideos = uploadedVideos.filter(v => v.id !== id);
+                renderVideoGallery();
+            }
+        }
+
+        // Document Upload (PDF, Word, PowerPoint) with URL.createObjectURL
+        const pdfUpload = document.getElementById('pdfUpload');
+        const documentsGallery = document.getElementById('documentsGallery');
+
+        pdfUpload.addEventListener('change', function(e) {
+            const files = Array.from(e.target.files);
+            
+            files.forEach(file => {
+                const fileExt = file.name.split('.').pop().toLowerCase();
+                const validExts = ['pdf', 'doc', 'docx', 'ppt', 'pptx'];
+                
+                if (validExts.includes(fileExt)) {
+                    const docURL = URL.createObjectURL(file);
+                    const docId = Date.now() + Math.random();
+                    
+                    uploadedDocuments.push({
+                        id: docId,
+                        name: file.name,
+                        url: docURL,
+                        file: file,
+                        type: file.type,
+                        ext: fileExt
+                    });
+                } else {
+                    alert(`${file.name} is not a supported document format.`);
+                }
+            });
+            
+            renderDocumentsGallery();
+            pdfUpload.value = ''; // Reset input
+        });
+
+        function renderDocumentsGallery() {
+            if (uploadedDocuments.length === 0) {
+                documentsGallery.style.display = 'none';
+                return;
+            }
+            
+            documentsGallery.style.display = 'grid';
+            documentsGallery.innerHTML = uploadedDocuments.map(doc => {
+                const fileSize = (doc.file.size / 1024).toFixed(2);
+                const ext = doc.ext.toUpperCase();
+                
+                // Determine icon and type
+                let icon = '📄';
+                let fileType = 'Document';
+                if (ext.includes('PPT')) {
+                    icon = '📊';
+                    fileType = 'PowerPoint';
+                } else if (ext.includes('DOC')) {
+                    icon = '📝';
+                    fileType = 'Word';
+                } else if (ext === 'PDF') {
+                    icon = '📕';
+                    fileType = 'PDF';
+                }
+                
+                // For PDFs, show iframe preview; for others, show card
+                const preview = doc.type === 'application/pdf' ? `
+                    <iframe src="${doc.url}" style="width: 100%; height: 400px; border: none; border-radius: 8px; margin-top: 10px;"></iframe>
+                    <button class="download-btn" onclick="downloadDocument(${doc.id})" style="margin-top: 15px; width: 100%;">📥 Download PDF</button>
+                ` : `
+                    <div class="doc-preview-card">
+                        <div class="file-icon">${icon}</div>
+                        <div class="file-info">${fileType} File • ${fileSize} KB</div>
+                        <button class="download-btn" onclick="downloadDocument(${doc.id})" style="margin-top: 15px;">📥 Download ${fileType}</button>
+                        <p style="color: #718096; font-size: 0.85em; margin-top: 10px;">
+                            <em>Cannot preview in browser</em>
+                        </p>
+                    </div>
+                `;
+                
+                return `
+                    <div class="media-item" data-id="${doc.id}">
+                        <div class="media-item-header">
+                            <div class="media-item-title">${icon} ${doc.name}</div>
+                            <button class="remove-btn" onclick="removeDocument(${doc.id})">✕ Remove</button>
+                        </div>
+                        ${preview}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function removeDocument(id) {
+            const doc = uploadedDocuments.find(d => d.id === id);
+            if (doc) {
+                URL.revokeObjectURL(doc.url);
+                uploadedDocuments = uploadedDocuments.filter(d => d.id !== id);
+                renderDocumentsGallery();
+            }
+        }
+
+        function downloadDocument(id) {
+            const doc = uploadedDocuments.find(d => d.id === id);
+            if (doc) {
+                const link = document.createElement('a');
+                link.href = doc.url;
+                link.download = doc.name;
+                link.click();
+            }
+        }
+
+        // URL Link Creation Functionality
+        const urlInput = document.getElementById('urlInput');
+        const createLinkBtn = document.getElementById('createLinkBtn');
+        const linkContainer = document.getElementById('linkContainer');
+        let linkCounter = 0;
+
+        createLinkBtn.addEventListener('click', function() {
+            const url = urlInput.value.trim();
+            
+            if (url) {
+                // Add https:// if no protocol is specified
+                const finalURL = url.match(/^https?:\/\//) ? url : 'https://' + url;
+                
+                // Clear empty state on first link
+                if (linkCounter === 0) {
+                    linkContainer.innerHTML = '';
+                }
+                
+                // Create a styled link button
+                const linkButton = document.createElement('div');
+                linkButton.style.cssText = 'margin-bottom: 12px; padding: 14px 18px; background: linear-gradient(135deg, #f0f4ff 0%, #e8edf7 100%); border-radius: 8px; border-left: 4px solid #667eea; transition: transform 0.2s;';
+                linkButton.innerHTML = `<a href="${finalURL}" target="_blank" rel="noopener noreferrer" style="color: #667eea; text-decoration: none; font-weight: 500; display: block;">🔗 ${finalURL}</a>`;
+                
+                linkButton.onmouseenter = function() { this.style.transform = 'translateX(5px)'; };
+                linkButton.onmouseleave = function() { this.style.transform = 'translateX(0)'; };
+                
+                linkContainer.appendChild(linkButton);
+                linkCounter++;
+                urlInput.value = '';
+            } else {
+                alert('Please enter a valid URL');
+            }
+        });
+
+        // Allow pressing Enter to add resource
+        urlInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                createLinkBtn.click();
+            }
+        });
+
+        // Auto-update timestamp to current date
+        document.addEventListener('DOMContentLoaded', function() {
+            const lastUpdatedElement = document.getElementById('lastUpdated');
+            if (lastUpdatedElement) {
+                const now = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric' };
+                lastUpdatedElement.textContent = now.toLocaleDateString('en-US', options);
+            }
+        });
+
+        // Cleanup: Revoke all object URLs when page is unloaded
+        window.addEventListener('beforeunload', function() {
+            uploadedVideos.forEach(video => URL.revokeObjectURL(video.url));
+            uploadedDocuments.forEach(doc => URL.revokeObjectURL(doc.url));
+        });
+
+        // Note: To replace upload functionality with static paths for supervisor,
+        // comment out the upload inputs and JavaScript, then uncomment the static
+        // HTML sections marked with "For Supervisor" comments.
+
+        // ===== PROFILE EDITING FUNCTIONALITY =====
+        
+        let isEditMode = false;
+        let originalProfileData = {};
+        let currentProfilePicURL = null;
+
+        // Load saved profile data from localStorage on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            loadProfileData();
+        });
+
+        function loadProfileData() {
+            const savedData = localStorage.getItem('portfolioProfile');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                document.getElementById('profileName').textContent = data.name || 'TREVOR KIMATHI WAICHONGO';
+                document.getElementById('profileTitle').textContent = data.title || 'Capstone Project';
+                document.getElementById('profileBio').textContent = data.bio || 'This portfolio showcases my capstone project...';
+                
+                if (data.githubURL) document.getElementById('githubLink').href = data.githubURL;
+                if (data.linkedinURL) document.getElementById('linkedinLink').href = data.linkedinURL;
+                if (data.email) document.getElementById('emailLink').href = 'mailto:' + data.email;
+                
+                if (data.profilePicture) {
+                    document.getElementById('profileImage').src = data.profilePicture;
+                }
+            }
+        }
+
+        function toggleEditMode() {
+            isEditMode = !isEditMode;
+            
+            const profileName = document.getElementById('profileName');
+            const profileTitle = document.getElementById('profileTitle');
+            const profileBio = document.getElementById('profileBio');
+            const editActions = document.getElementById('editActions');
+            const profilePictureUpload = document.getElementById('profilePictureUpload');
+            const editBtn = document.querySelector('.edit-profile-btn');
+            const socialLinks = document.getElementById('socialLinks');
+            
+            if (isEditMode) {
+                // Save original data
+                originalProfileData = {
+                    name: profileName.textContent,
+                    title: profileTitle.textContent,
+                    bio: profileBio.textContent,
+                    githubURL: document.getElementById('githubLink').href,
+                    linkedinURL: document.getElementById('linkedinLink').href,
+                    email: document.getElementById('emailLink').href.replace('mailto:', ''),
+                    profilePic: document.getElementById('profileImage').src
+                };
+                
+                // Convert to input fields
+                profileName.innerHTML = `<input type="text" class="edit-input" id="editName" value="${originalProfileData.name}" style="text-align: center; font-size: 2.2em;">`;
+                profileTitle.innerHTML = `<input type="text" class="edit-input" id="editTitle" value="${originalProfileData.title}" style="text-align: center; font-size: 1.2em;">`;
+                profileBio.innerHTML = `<textarea class="edit-textarea" id="editBio" rows="4" style="text-align: center;">${originalProfileData.bio}</textarea>`;
+                
+                // Add contact info editors
+                socialLinks.innerHTML = `
+                    <div class="edit-contact" style="width: 100%; background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 10px;">
+                        <div class="edit-field">
+                            <label style="color: white;">GitHub URL:</label>
+                            <input type="url" class="edit-input" id="editGithub" value="${originalProfileData.githubURL}" placeholder="https://github.com/username">
+                        </div>
+                        <div class="edit-field">
+                            <label style="color: white;">LinkedIn URL:</label>
+                            <input type="url" class="edit-input" id="editLinkedin" value="${originalProfileData.linkedinURL}" placeholder="https://linkedin.com/in/username">
+                        </div>
+                        <div class="edit-field">
+                            <label style="color: white;">Email:</label>
+                            <input type="email" class="edit-input" id="editEmail" value="${originalProfileData.email}" placeholder="your.email@example.com">
+                        </div>
+                    </div>
+                `;
+                
+                // Show edit actions and picture upload
+                editActions.style.display = 'flex';
+                profilePictureUpload.style.display = 'block';
+                editBtn.textContent = '❌ Cancel';
+                editBtn.style.background = 'rgba(239, 68, 68, 0.3)';
+            } else {
+                cancelEdit();
+            }
+        }
+
+        function saveProfile() {
+            const name = document.getElementById('editName').value;
+            const title = document.getElementById('editTitle').value;
+            const bio = document.getElementById('editBio').value;
+            const githubURL = document.getElementById('editGithub').value;
+            const linkedinURL = document.getElementById('editLinkedin').value;
+            const email = document.getElementById('editEmail').value;
+            const profilePic = currentProfilePicURL || document.getElementById('profileImage').src;
+            
+            // Save to localStorage
+            const profileData = {
+                name, title, bio, githubURL, linkedinURL, email,
+                profilePicture: profilePic
+            };
+            localStorage.setItem('portfolioProfile', JSON.stringify(profileData));
+            
+            // Update display
+            document.getElementById('profileName').textContent = name;
+            document.getElementById('profileTitle').textContent = title;
+            document.getElementById('profileBio').textContent = bio;
+            
+            // Restore social links
+            document.getElementById('socialLinks').innerHTML = `
+                <a id="githubLink" href="${githubURL}" target="_blank" rel="noopener noreferrer" title="GitHub">🐙</a>
+                <a id="linkedinLink" href="${linkedinURL}" target="_blank" rel="noopener noreferrer" title="LinkedIn">💼</a>
+                <a id="emailLink" href="mailto:${email}" target="_blank" rel="noopener noreferrer" title="Email">📧</a>
+            `;
+            
+            if (profilePic) {
+                document.getElementById('profileImage').src = profilePic;
+            }
+            
+            // Exit edit mode
+            isEditMode = false;
+            document.getElementById('editActions').style.display = 'none';
+            document.getElementById('profilePictureUpload').style.display = 'none';
+            const editBtn = document.querySelector('.edit-profile-btn');
+            editBtn.textContent = '✏️ Edit Profile';
+            editBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+            
+            alert('✅ Profile saved successfully!');
+        }
+
+        function cancelEdit() {
+            // Restore original data
+            document.getElementById('profileName').textContent = originalProfileData.name;
+            document.getElementById('profileTitle').textContent = originalProfileData.title;
+            document.getElementById('profileBio').textContent = originalProfileData.bio;
+            
+            // Restore social links
+            document.getElementById('socialLinks').innerHTML = `
+                <a id="githubLink" href="${originalProfileData.githubURL}" target="_blank" rel="noopener noreferrer" title="GitHub">🐙</a>
+                <a id="linkedinLink" href="${originalProfileData.linkedinURL}" target="_blank" rel="noopener noreferrer" title="LinkedIn">💼</a>
+                <a id="emailLink" href="mailto:${originalProfileData.email}" target="_blank" rel="noopener noreferrer" title="Email">📧</a>
+            `;
+            
+            // Hide edit actions
+            isEditMode = false;
+            document.getElementById('editActions').style.display = 'none';
+            document.getElementById('profilePictureUpload').style.display = 'none';
+            const editBtn = document.querySelector('.edit-profile-btn');
+            editBtn.textContent = '✏️ Edit Profile';
+            editBtn.style.background = 'rgba(255, 255, 255, 0.2)';
+            
+            // Reset profile picture if changed
+            if (currentProfilePicURL) {
+                URL.revokeObjectURL(currentProfilePicURL);
+                currentProfilePicURL = null;
+            }
+        }
+
+        // Profile Picture Upload Handler
+        const profilePicInput = document.getElementById('profilePicInput');
+        if (profilePicInput) {
+            profilePicInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file && file.type.startsWith('image/')) {
+                    // Revoke previous URL if exists
+                    if (currentProfilePicURL) {
+                        URL.revokeObjectURL(currentProfilePicURL);
+                    }
+                    
+                    // Create new object URL
+                    currentProfilePicURL = URL.createObjectURL(file);
+                    
+                    // Convert to base64 for localStorage persistence
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        currentProfilePicURL = event.target.result; // base64 string
+                        document.getElementById('profileImage').src = currentProfilePicURL;
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    alert('Please select a valid image file.');
+                }
+            });
+        }
+
+        // Cleanup profile picture URL on page unload
+        window.addEventListener('beforeunload', function() {
+            if (currentProfilePicURL && currentProfilePicURL.startsWith('blob:')) {
+                URL.revokeObjectURL(currentProfilePicURL);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Large video files excluded from Git
+assets/*.mp4
+assets/*.mov
+*.mp4
+*.mov
+
+# Large document files (over GitHub's 100MB limit)
+assets/Photographic Essay.docx
