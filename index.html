@@ -631,6 +631,47 @@
             box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
         }
 
+        /* Document Links */
+        .doc-link {
+            display: block;
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8edf7 100%);
+            border-left: 4px solid #667eea;
+            border-radius: 6px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .doc-link:hover {
+            transform: translateX(5px);
+            background: linear-gradient(135deg, #e8f0ff 0%, #dae4f5 100%);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+
+        /* Resource Links */
+        .resource-link {
+            margin-bottom: 12px;
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #f0f4ff 0%, #e8edf7 100%);
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s;
+        }
+
+        .resource-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        }
+
+        .resource-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            display: block;
+        }
+
         /* Footer */
         .footer {
             margin-top: 50px;
@@ -792,20 +833,8 @@
         <!-- Profile Section -->
         <header class="profile-section">
             <!-- Edit Profile Button -->
-            <button class="edit-profile-btn" onclick="toggleEditMode()">✏️ Edit Profile</button>
-            
-            <!-- Profile Picture Upload (hidden by default) -->
-            <div id="profilePictureUpload" class="upload-container" style="display: none; margin-bottom: 20px;">
-                <label for="profilePicInput" class="upload-label">
-                    <span class="upload-icon">📷</span>
-                    <span>Change Profile Picture</span>
-                </label>
-                <input type="file" id="profilePicInput" class="file-input" accept="image/*" style="display: none;">
-            </div>
-            
             <div class="profile-image-wrapper">
-                <img id="profileImage" src="./assets/profile.jpg" alt="Your Name" class="profile-image">
-                <!-- If no image, use: <div class="profile-placeholder">👤</div> -->
+                <img id="profileImage" src="./assets/me.jpg" alt="Trevor Kimathi Waichongo" class="profile-image">
             </div>
             
             <h1 id="profileName" class="profile-name">TREVOR KIMATHI WAICHONGO</h1>
@@ -839,74 +868,173 @@
             <div class="projects-grid">
                 <!-- Video Section -->
                 <section class="section">
-                    <h2>📹 Video Presentation</h2>
-                    <p class="section-description">Upload multiple videos to preview them here.</p>
+                    <h2>📹 Video Presentations</h2>
+                    <p class="section-description">Watch my project video presentations on YouTube.</p>
                     
-                    <!-- Upload Input -->
-                    <div class="upload-container">
-                        <label for="videoUpload" class="upload-label">
-                            <span class="upload-icon">📤</span>
-                            <span>Choose Video Files</span>
-                        </label>
-                        <input type="file" id="videoUpload" class="file-input" accept="video/*" multiple style="display: none;">
+                    <!-- YouTube Video Embeds -->
+                    <div class="video-grid" style="display: grid; gap: 20px; margin-top: 20px;">
+                        <!-- Video 1: Modern Challenges -->
+                        <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+                            <iframe 
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
+                                src="https://www.youtube.com/embed/FOQLtB3oZsc" 
+                                title="Modern Challenges Video" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <!-- Video 2: Innovation -->
+                        <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+                            <iframe 
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
+                                src="https://www.youtube.com/embed/zQ5cNijvWME" 
+                                title="Innovation Video" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        
+                        <!-- Video 3: African Culture -->
+                        <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px;">
+                            <iframe 
+                                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; border-radius: 8px;"
+                                src="https://www.youtube.com/embed/DfeTIiA1qWw" 
+                                title="African Culture Video" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
                     </div>
-                    
-                    <!-- Video Gallery -->
-                    <div id="videoGallery" class="media-gallery" style="display: none;"></div>
-                    
-                    <!-- For Supervisor: Replace above with static path -->
-                    <!-- <video controls style="width: 100%; border-radius: 8px; margin-top: 18px;">
-                        <source src="./assets/video.mp4" type="video/mp4">
-                    </video> -->
                 </section>
 
                 <!-- Documentation Section -->
                 <section class="section">
                     <h2>📄 Project Documentation</h2>
-                    <p class="section-description">Upload multiple PDF, Word (.docx), or PowerPoint (.pptx) documents.</p>
+                    <p class="section-description">Download and view my project documents, presentations, and materials.</p>
                     
-                    <!-- Upload Input -->
-                    <div class="upload-container">
-                        <label for="pdfUpload" class="upload-label">
-                            <span class="upload-icon">📤</span>
-                            <span>Choose Documents</span>
-                        </label>
-                        <input type="file" id="pdfUpload" class="file-input" accept=".pdf,.docx,.doc,.pptx,.ppt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation" multiple style="display: none;">
+                    <!-- Document Links -->
+                    <div class="document-links" style="margin-top: 20px;">
+                        <!-- Presentations -->
+                        <div class="doc-category" style="margin-bottom: 25px;">
+                            <h3 style="color: #667eea; font-size: 1.1em; margin-bottom: 12px;">� Presentations</h3>
+                            <div style="display: grid; gap: 10px;">
+                                <a href="./assets/This_Is_How_I_Began_Capstone_Expanded.pptx" download class="doc-link">
+                                    📥 This Is How I Began - Capstone Expanded
+                                </a>
+                                <a href="./assets/The_Echoes_of_the_Hearth.pptx" download class="doc-link">
+                                    📥 The Echoes of the Hearth
+                                </a>
+                                <a href="./assets/Summary Capstone.pptx" download class="doc-link">
+                                    📥 Summary Capstone
+                                </a>
+                                <a href="./assets/Biometrics & Cybersecurity.pptx" download class="doc-link">
+                                    📥 Biometrics & Cybersecurity
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Documents & Essays -->
+                        <div class="doc-category" style="margin-bottom: 25px;">
+                            <h3 style="color: #667eea; font-size: 1.1em; margin-bottom: 12px;">📝 Documents & Essays</h3>
+                            <div style="display: grid; gap: 10px;">
+                                <a href="./assets/Autobiography.docx" download class="doc-link">
+                                    📥 Autobiography
+                                </a>
+                                <a href="https://docs.google.com/document/d/18CgcKu1wYy8qwAiyKqmb_RIQCV7Iqhep/edit?usp=drive_link&ouid=116736149727611657156&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" class="doc-link">
+                                    📄 Photographic Essay (Google Docs)
+                                </a>
+                                <a href="./assets/abstract echoes.docx" download class="doc-link">
+                                    📥 Abstract: Echoes
+                                </a>
+                                <a href="./assets/abstract ai and tech.docx" download class="doc-link">
+                                    📥 Abstract: AI and Technology
+                                </a>
+                                <a href="./assets/abstract youth unemployment.docx" download class="doc-link">
+                                    📥 Abstract: Youth Unemployment
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- CV Documents -->
+                        <div class="doc-category">
+                            <h3 style="color: #667eea; font-size: 1.1em; margin-bottom: 12px;">📋 Curriculum Vitae</h3>
+                            <div style="display: grid; gap: 10px;">
+                                <a href="./assets/2nd New Trevor Kimathi cvdocx.docx" download class="doc-link">
+                                    📥 CV - Trevor Kimathi
+                                </a>
+                                <a href="./assets/CV in Kiswahili.docx" download class="doc-link">
+                                    📥 CV in Kiswahili
+                                </a>
+                                <a href="./assets/CV in Kikuyu.docx" download class="doc-link">
+                                    📥 CV in Kikuyu
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <!-- Documents Gallery -->
-                    <div id="documentsGallery" class="media-gallery" style="display: none;"></div>
-                    
-                    <!-- For Supervisor: Replace above with static path -->
-                    <!-- <iframe src="./assets/report.pdf" style="width: 100%; height: 600px; border-radius: 8px; margin-top: 18px;"></iframe>
-                    <a href="./assets/report.pdf" download class="download-btn">📥 Download Full PDF</a> -->
                 </section>
 
                 <!-- Project Links Section -->
                 <section class="section">
-                    <h2>🔗 Project Links</h2>
+                    <h2>🔗 Project Links & Resources</h2>
                     <p class="section-description">Explore related resources, code repositories, and project materials.</p>
-                    <div class="url-input-group">
-                        <input type="text" id="urlInput" placeholder="Enter URL (e.g., https://github.com/username/project)">
-                        <button id="createLinkBtn">Add Resource</button>
-                    </div>
-                    <div class="link-container" id="linkContainer">
-                        <span class="empty-state">No resources added yet</span>
+                    <div class="link-container">
+                        <!-- GitHub Repository -->
+                        <div class="resource-link">
+                            <a href="https://github.com/2COR515/projectcapstone" target="_blank" rel="noopener noreferrer">
+                                🐙 GitHub Repository - Project Capstone
+                            </a>
+                        </div>
+                        
+                        <!-- YouTube Video Links -->
+                        <div class="resource-link">
+                            <a href="https://youtu.be/FOQLtB3oZsc" target="_blank" rel="noopener noreferrer">
+                                🎬 Modern Challenges Video - YouTube
+                            </a>
+                        </div>
+                        <div class="resource-link">
+                            <a href="https://youtu.be/zQ5cNijvWME" target="_blank" rel="noopener noreferrer">
+                                🎬 Innovation Video - YouTube
+                            </a>
+                        </div>
+                        <div class="resource-link">
+                            <a href="https://youtu.be/DfeTIiA1qWw" target="_blank" rel="noopener noreferrer">
+                                🎬 African Culture Video - YouTube
+                            </a>
+                        </div>
+                        
+                        <!-- Google Docs -->
+                        <div class="resource-link">
+                            <a href="https://docs.google.com/document/d/18CgcKu1wYy8qwAiyKqmb_RIQCV7Iqhep/edit?usp=drive_link&ouid=116736149727611657156&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer">
+                                📄 Photographic Essay - Google Docs
+                            </a>
+                        </div>
+                        
+                        <!-- LinkedIn Profile -->
+                        <div class="resource-link">
+                            <a href="https://www.linkedin.com/in/waichongo/" target="_blank" rel="noopener noreferrer">
+                                💼 LinkedIn Profile
+                            </a>
+                        </div>
                     </div>
                 </section>
             </div>
         </main>
 
-        <!-- Setup Instructions -->
+        <!-- Portfolio Info -->
         <div class="info-box">
-            <h3>📌 Setup Instructions</h3>
-            <p><strong>Required Files:</strong> This portfolio expects the following files in the <code>assets/</code> folder:</p>
-            <ol>
-                <li><code>assets/profile.jpg</code> - Your profile photo</li>
-                <li><code>assets/video.mp4</code> - Project video presentation</li>
-                <li><code>assets/report.pdf</code> - Project documentation/report</li>
-            </ol>
-            <p><strong>Note:</strong> All files use relative paths (<code>./assets/...</code>) for GitHub Pages compatibility.</p>
+            <h3>📌 About This Portfolio</h3>
+            <p><strong>Portfolio Features:</strong></p>
+            <ul style="list-style-position: inside;">
+                <li>📹 Embedded YouTube video presentations</li>
+                <li>📄 Downloadable project documents and presentations</li>
+                <li>🔗 Direct links to GitHub repository and resources</li>
+                <li>📱 Fully responsive design for mobile and desktop viewing</li>
+            </ul>
+            <p><strong>Note:</strong> All documents are available for download. Videos are hosted on YouTube for optimal viewing experience.</p>
         </div>
 
         <!-- Footer -->
